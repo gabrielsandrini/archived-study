@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+    {% include 'components/search_box.html' %}
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped table-sm-responsive">
+                <thead>
+                    <tr>
+                        <th>Guardião</th>
+                        <th>Cachorro</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for adocao in dados %}
+                        <tr>
+                            <td>{{ adocao.guardiao }}</td>
+                            <td>{{ adocao.cachorro }}</td>
+                            <td>{{ adocao.data }}</td>
+                            <td>
+                                <a href="{% url 'url_atualiza_adocao' adocao.id %}" class="btn btn-warning">Editar</a>
+                                <a href="#"
+                                   onclick='confirmarDelete("{{ adocao }}", "{% url 'url_deleta_adocao' adocao.id %}")'
+                                   class="btn btn-danger">Excluir</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

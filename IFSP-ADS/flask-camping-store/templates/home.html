@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block titulo %} Outdoor in-tents {% endblock %} {%
+block conteudo %}
+<header>
+  <div id="logo-container">
+    <i class="las la-campground"></i>
+    <div id="logo-title-container">
+      <h1 id="logo-title">Outdoor in-tents</h1>
+      <span id="slogan">Products forest off your life</span>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark linear-bg-nav">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Produtos</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% for c in categories %}
+          <li class="nav-item">
+            <!--  prettier-ignore -->
+            <a
+              class="nav-link 
+              {% if active_category == c.id %}
+               active
+              {% endif %}"
+              aria-current="page"
+              href="?category={{ c.id }}"
+            >
+              {{ c.description }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        <form class="d-flex" method="GET" action="/">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Pesquisar..."
+            aria-label="Pesquisar..."
+            name="search"
+          />
+          <button class="btn btn-outline-light" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+<content id="main-container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+  <section
+    class=".container-fluid container-produtos"
+    style="margin-top: 20px; width: 100%"
+  >
+    <div class=".row" style="display: flex; gap: 25px">
+      {% for p in products %}
+      <div class="card col-3 col-md-6 col-sm-12" style="width: 18rem">
+        <img src="{{ p.image_url }}" class="card-img-top" alt="{{ p.title }}" />
+        <div class="card-body card-body-move-to-end">
+          <h5 class="card-title">{{ p.title }}</h5>
+          <p class="card-text">{{ p.description }}</p>
+          <a href="/produto/{{ p.id }}" class="btn btn-primary">Ver mais</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</content>
+{% endblock %}

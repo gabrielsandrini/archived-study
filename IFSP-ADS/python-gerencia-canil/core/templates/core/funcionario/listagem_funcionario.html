@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+    {% include 'components/search_box.html' %}
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped table-sm-responsive">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Celular</th>
+                        <th>Usuário</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for funcionario in dados %}
+                        <tr>
+                            <td>{{ funcionario.pessoa.nome }}</td>
+                            <td>{{ funcionario.pessoa.cpf }}</td>
+                            <td>{{ funcionario.pessoa.email }}</td>
+                            <td>{{ funcionario.pessoa.telefone }}</td>
+                            <td>{{ funcionario.pessoa.celular }}</td>
+                            <td>{{ funcionario.credenciais }}</td>
+                            <td>
+                                <a href="{% url 'url_atualiza_funcionario' funcionario.id %}" class="btn btn-warning">Editar</a>
+                                <a href='#'
+                                   onclick='confirmarDelete("{{ funcionario }}", "{% url 'url_deleta_funcionario' funcionario.id %}")'
+                                   class="btn btn-danger">Excluir</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

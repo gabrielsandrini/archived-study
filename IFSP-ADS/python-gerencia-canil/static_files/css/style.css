@@ -1,0 +1,108 @@
+html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+footer{
+    text-align: center;
+    padding: 10px 10px;
+    background-color: #83C5BE;
+    color: #EDF6F9;
+}
+
+.navbar{
+    background-color: #83C5BE;
+}
+
+.sidebar{
+    padding-top: 15px;
+    background-color: #83C5BE;
+}
+
+.content{
+    background-color: #EDF6F9;
+    min-height: 100vh;
+}
+
+.nav-item a, .nav-item span{
+    color: #EDF6F9;
+    font-size: 1.2rem;
+}
+
+.nav-item a:hover{
+    text-decoration: none;
+    color: #FFDDD2;
+}
+
+.navbar-toggle{
+    color: #EDF6F9;
+}
+
+.navbar-toggle:hover{
+    color: #FFDDD2;
+}
+
+.btn-pagina-principal{
+    height: 150px;
+    width: 250px;
+    margin: 15px;
+    background-color: #E29578;
+    color: #EDF6F9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.btn-pagina-principal:hover, .btn-listagem:hover{
+    background-color: #e29578d4;
+    color: #EDF6F9;
+}
+
+h1{
+    color: #006D77;
+}
+
+.btn-login{
+    background-color: #E29578;
+    color: #EDF6F9;
+}
+
+.btn-listagem-registrar{
+    background-color: #E29578;
+    color: #EDF6F9;
+    float: right;
+}
+
+.btn-listagem-registrar:hover, .btn-login:hover{
+    background-color: #e29578d4;
+    color: #EDF6F9;
+}
+
+.btn-listagem-buscar{
+    background-color: #04C859;
+    color: #EDF6F9;
+}
+
+.btn-listagem-buscar:hover{
+    background-color: #04d75f;
+    color: #EDF6F9;
+    transition: background-color 0.2s;
+}
+
+@media(min-width: 992px){
+    .navbar-toggle{
+        display: none;
+    }
+}
+
+@media(max-width: 768px){
+    .btn-listagem-registrar{
+        float: none;
+    }
+}

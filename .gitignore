@@ -88,3 +88,11 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+
+#python
+__pycache__
+venv
+!migrations
+migrations/*
+app.db

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                {% csrf_token %}
+                {% for form in forms %}
+                    {{ form|crispy }}
+                    <hr/>
+                {% endfor %}
+                <div class="form-row d-flex justify-content-end">
+                    <button type="reset" class="btn btn-danger">
+                        Limpar Campos
+                    </button>
+                    &nbsp
+                    <button type="submit" class="btn btn-success">
+                        {{ form_action}} {{ model }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

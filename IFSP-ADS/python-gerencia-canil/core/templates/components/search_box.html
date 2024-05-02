@@ -1,0 +1,47 @@
+<!--
+Context:
+search: string a ser buscada
+boolean_search_fields: campos de checkbox, no formato [(label ,name, boolean), (nome, boolean), ...]
+-->
+
+<div style="margin: 6px auto" class="col-12">
+    <form method="get" id="search_bar_form" style="margin-top: 10px">
+        <div class="form-row">
+            <div class="form-group col-10">
+                <input
+                    type="search"
+                    name="search"
+                    value="{{ search }}"
+
+                    class="form-control col-12"
+                    placeholder="Buscar {{ model }}"
+                    onchange='document.getElementById("search_bar_form").submit()'
+                 >
+            </div>
+            <div class="form-group col-2">
+                <input
+                    type="submit"
+                    value="Buscar"
+                    class="btn btn-success col-12"
+                >
+            </div>
+        </div>
+        <div class="form-row" style="margin-left: 6px">
+            {% for field_label, field_name, field_value in boolean_search_fields %}
+                <div style="margin-right: 15px">
+                    <input
+                            type="checkbox"
+                            name={{ field_name }}
+                                    value="1"
+                            {% if field_value %}
+                            checked
+                            {% endif %}
+                            onchange='document.getElementById("search_bar_form").submit()'
+                            id={{ field_name }}
+                    >
+                    <label for={{ field_name }}>{{ field_label }}</label>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+</div>

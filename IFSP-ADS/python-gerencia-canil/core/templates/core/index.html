@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Página Inicial
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+    <div class="d-flex flex-wrap align-items-center">
+        <a href="{% url 'url_cadastro_cachorro' %}" class="btn btn-pagina-principal">
+            <i class="fa fa-plus" aria-hidden="true"></i> &nbsp Registrar Cachorro
+        </a>
+        <a href="{% url 'url_cadastro_adocao' %}" class="btn btn-pagina-principal">
+            <i class="fa fa-heart" aria-hidden="true"></i> &nbsp Registrar Adoção
+        </a>
+        <a href="{% url 'url_cadastro_veterinario' %}" class="btn btn-pagina-principal">
+            <i class="fa fa-user-md" aria-hidden="true"></i> &nbsp Registrar Veterinário
+        </a>
+        <a href="{% url 'url_cadastro_consulta' %}" class="btn btn-pagina-principal">
+            <i class="fa fa-stethoscope" aria-hidden="true"></i> &nbsp Registrar Consulta
+        </a>
+        <a href="{% url 'url_cadastro_vacinacao' %}" class="btn btn-pagina-principal">
+            <i class="fa fa-medkit" aria-hidden="true"></i> &nbsp Registrar Vacinação
+        </a>
+        <a href="{% url 'url_cadastro_funcionario' %}" class="btn btn-pagina-principal">
+            <i class="fa fa-user-plus" aria-hidden="true"></i> &nbsp Registrar Funcionário
+        </a>
+    </div>
+{% endblock %}

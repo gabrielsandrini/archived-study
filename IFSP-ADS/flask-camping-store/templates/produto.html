@@ -1,0 +1,83 @@
+{% extends "base.html" %} 
+{% block titulo %} Outdoor in-tents {% endblock %} 
+{% block conteudo %}
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark linear-bg-nav">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/" style="color: yellow">
+        <i class="las la-campground"></i>
+        Outdoor in tents
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% for c in categories %}
+          <li class="nav-item">
+            <!--  prettier-ignore -->
+            <a
+              class="nav-link 
+              {% if active_category == c.id %}
+               active
+              {% endif %}"
+              aria-current="page"
+              href="/?category={{ c.id }}"
+            >
+              {{ c.description }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        <form class="d-flex" method="GET" action="/">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            name="search"
+          />
+          <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+<content class=".container-fluid container-produto">
+  <div class="row info-produto">
+    <div class="col-md-4 col-sm-12">
+      <img src="{{product.image_url}}" class="product-img" />
+    </div>
+    <div class="product-title col-md-7 col-sm-12 mt-sm-4">
+      <h1>{{ product.title }}</h1>
+      <div class="card card-preco-container">
+        <div class="card-header">Garanta seu produto:</div>
+        <div class="card-body">
+          <h4 class="card-preco-valor">
+            R$ {{'%0.2f'| format(product.price|float)}}
+          </h4>
+          <p class="card-text">Frete Grátis</p>
+          <form method="POST" action="/checkout">
+            <input type="hidden" name="product_id" value="{{product.id}}">
+            <button type="submit" class="btn btn-primary">Comprar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="product-description">
+      <h2>Descrição</h2>
+      <p>{{ product.description }}</p>
+    </div>
+  </div>
+</content>
+{% endblock %}
